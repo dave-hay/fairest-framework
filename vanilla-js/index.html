@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='description' content='Your description goes here'>
+    <meta name='keywords' content='one, two, three'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+    <title>Blank Template</title>
+    
+    <!-- external CSS link -->
+    <link rel='stylesheet' href='css/normalize.css'>
+    <link rel='stylesheet' href='css/style.css'>
+  </head>
+  <body>
+    <div id='container'>
+      <div>
+        <h1>My Todos</h1>
+        <p>Total time: <span id='total-time'></span></p>
+        <p>Total items: <span id='total-items'></span></p>
+      </div>
+      <form id='add'>
+        <label for='input-text'>New Todo</label>
+        <input type='text' id='input-text' name='input-text' placeholder='Add new todo...'>
+        <button type='button' id='addOne'>Add</button>
+        <button type='button' id='add10k'>Add 10K</button>
+        <button type='button' id='add100k'>Add 100K</button>
+        <button type='button' id='add500k'>Add 500K</button>
+      </form>
+      <ul class='todos'></ul>
+    </div>
+    <script type='text/javascript' src='js/main.js'></script>
+  </body>
+</html>
