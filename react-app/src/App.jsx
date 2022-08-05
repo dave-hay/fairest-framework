@@ -1,32 +1,26 @@
-import { useState } from "react";
-import Todo from "./Todo";
+import { useState } from 'react';
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const [inp, setInp] = useState("");
-  const [totalTime, setTotalTime] = useState("");
-  const [totalItems, setTotalItems] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [inp, setInp] = useState('');
+  const [totalTime, setTotalTime] = useState('');
+  const [totalItems, setTotalItems] = useState('');
 
   const handleClick = (e) => {
     e.preventDefault();
-    const newTodo = { name: inp };
-    setTodos([...todos, newTodo]);
-    setInp("");
+    setTodos([...todos, inp]);
+    setInp('');
   };
 
   const addXItems = (num) => {
-    setLoading(true);
     const t0 = performance.now();
-    // for (let i = 0; i < num; i++) {
-    //   newItems.push({ name: inp });
-    //   // setTotalItems(totalItems + 1);
-    // }
-    const newI = Array(num).fill({ name: inp });
-    setTodos(...todos, newI);
+    const newItems = [];
+    for (let i = 0; i < num; i++) {
+      newItems.push(inp);
+    }
+    setTodos([...todos, ...newItems]);
     const t1 = performance.now();
-    const time = (t1 - t0) / 10000;
-    setLoading(false);
+    const time = (t1 - t0) / 1000;
     setTotalTime(`${time.toFixed(3)} seconds`);
     setTotalItems(+totalItems + num);
   };
@@ -38,16 +32,18 @@ function App() {
         <p>Total Time: {totalTime}</p>
         <p>Total Items: {totalItems}</p>
         <input
-          type="text"
+          type='text'
           value={inp}
           onChange={(e) => setInp(e.target.value)}
         />
-        <button type="button" onClick={handleClick}>Add</button>
+        <button type='button' onClick={handleClick}>Add</button>
         <button
-          type="button"
+          type='button'
           onClick={(e) => {
             e.preventDefault();
-            addXItems(1000);
+            // const t0 = performance.now();
+            addXItems(10000);
+            // const t1 = performance.now();
           }}
         >
           Add 10K
@@ -55,7 +51,9 @@ function App() {
       </div>
       <div>
         <ul>
-          {!loading && todos.map((todo) => <Todo props={todo} />)}
+          {todos.map((todo) => (
+            <li>{todo}</li>
+          ))}
         </ul>
       </div>
     </div>
