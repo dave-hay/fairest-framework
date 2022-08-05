@@ -1,4 +1,7 @@
-# Vanilla JS TODO List
+# Vanilla JS 
+
+## TODOs
+- delete
 
 ## Performance
 ```javascript

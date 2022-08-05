@@ -1,9 +1,15 @@
+import Todos from './todos.js';
+
 const todoList = document.querySelector('.todos');
 const totalTime = document.getElementById('total-time');
 const totalItems = document.getElementById('total-items');
 const form = document.getElementById('add');
 
 let totalTodos = 0;
+const td = new Todos(4, 'hi')
+td.makeTodos()
+totalTime.innerText = td.time
+
 
 // func create new todo
 function createTodo(text) {
@@ -28,8 +34,6 @@ const addXItems = (num) => {
   totalTime.innerText = `${time.toFixed(3)} seconds`;
   totalItems.innerText = totalTodos.toString()
 };
-
-// TODO: delete li on checkbox click
 
 // add one
 const addOne = document.getElementById('addOne');
