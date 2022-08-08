@@ -22,14 +22,22 @@ export default {
     removeTodo(todo) {
       this.todos = this.todos.filter((t) => t !== todo);
     },
+    add10K() {
+      for (let i = 0; i < 10000; i++) {
+        this.todos.push({ id: id++, text: this.newTodo });
+      }
+      this.newTodo = '';
+    },
   },
 };
 </script>
 
 <template>
+  <h1>My Todos</h1>
   <form @submit.prevent='addTodo'>
     <input v-model='newTodo'>
     <button>Add Todo</button>
+    <button @click='add10K'>Add 10K</button>
   </form>
   <ul>
     <li v-for='todo in todos' :key='todo.id'>
