@@ -8,26 +8,22 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'todo';
 
-  filter: 'all' | 'active' | 'done' = 'all'
-
-  allItems = [
-    { description: 'eat', done: true },
-    { description: 'sleep', done: false },
-    { description: 'play', done: false },
-    { description: 'laugh', done: false },
+  allItems: {description: string}[] = [
   ];
 
   addItem(description: string) {
     this.allItems.unshift({
-      description,
-      done: false
+      description
     });
   }
 
-  get items() {
-    if (this.filter === 'all') {
-      return this.allItems;
+  add10k(description: string) {
+    for (let i = 0; i < 10000; i++) {
+      this.allItems.unshift({description})
     }
-    return this.allItems.filter((item) => this.filter === 'done' ? item.done : !item.done);
+  }
+
+  get todos() {
+    return this.allItems
   }
 }
