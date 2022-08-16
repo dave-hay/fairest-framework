@@ -5,8 +5,15 @@ const totalItems = document.getElementById('total-items');
 const form = document.getElementById('add');
 const todoListEl = document.querySelector('.todos');
 
-let todoListCount = 0;
 let allTodos = [];
+
+const render = () => {
+  todoListEl.innerHTML = ''; // clear
+  allTodos.forEach((item, i) => {
+    item.setAttribute('id', `${i}`);
+    todoListEl.appendChild(item);
+  });
+};
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -30,14 +37,6 @@ function createTodo(text) {
   allTodos.push(newItem);
 }
 
-const render = () => {
-  todoListEl.innerHTML = ''; // clear
-  allTodos.forEach((item, i) => {
-    item.setAttribute('id', `${i}`);
-    todoListEl.appendChild(item);
-  });
-};
-
 const handleClickTodoItem = (e) => {
   let item = e.target.parentNode;
   let id = item.id;
@@ -56,11 +55,19 @@ const handleClickTodoItem = (e) => {
 };
 
 function handleClick(num, text) {
-  const td = new Todos(num, text);
-  td.makeTodos();
-  totalTime.innerText = td.time;
-  todoListCount += num;
-  totalItems.innerText = todoListCount;
+  if (text === '') return
+  // loop and create todo
+  let i = 0;
+
+  const t0 = performance.now();
+  while (i < num) {
+    createTodo(text)
+    i++;
+  }
+  const t1 = performance.now();
+  let time = (t1 - t0) / 1000;
+  totalTime.innerText = time.toString();
+  totalItems.innerText = allTodos.length.toString();
 }
 
 // add one
@@ -79,6 +86,8 @@ const button10K = document.getElementById('add10k');
 button10K.addEventListener('click', e => {
   e.preventDefault();
   handleClick(10000, form.elements['input-text'].value);
+  form.elements['input-text'].value = '';
+  render();
 });
 
 // add 100K items
