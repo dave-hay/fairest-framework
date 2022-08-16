@@ -6,54 +6,76 @@ const form = document.getElementById('add');
 const todoListEl = document.querySelector('.todos');
 
 let todoListCount = 0;
-let allTodos = []
+let allTodos = [];
 
 // creates a single todo
-function createTodo(text) {
+function createTodo(text, index) {
   const newItem = document.createElement('li');
   newItem.classList.add('todo');
-  newItem.innerHTML = `<input onclick='' type='checkbox'> <span>${text}</span>`;
+  newItem.classList.add(`${index}`);
+  newItem.innerHTML = `
+<input name='completed' type='checkbox'> 
+<span>${text}</span>
+<input name='delete' type='button'>
+`;
+  newItem.addEventListener('click', handleClickTodoItem)
   return newItem;
 }
 
-const deleteTodo = (i) => {
-  // delete global var
+const handleClickTodoItem = (e) => {
+  let item = e.target.parentNode;
+  let id = e.target.id;
+  if (e.target.name === 'completed') {
+    item.style.textDecoration = item.style.textDecoration === 'line-through' ?
+      'none' :
+      'line-through';
+  }
 
-}
+  if (e.target.name === 'delete') {
+    allTodos.splice(+id, 1)
+  }
+};
+
+const deleteTodo = (i) => {
+  allTodos.splice(i, 1);
+};
 
 function handleClick(num, text) {
-  const td = new Todos(num, text)
-  td.makeTodos()
-  totalTime.innerText = td.time
+  const td = new Todos(num, text);
+  td.makeTodos();
+  totalTime.innerText = td.time;
   todoListCount += num;
-  totalItems.innerText = todoListCount
+  totalItems.innerText = todoListCount;
 }
 
 // add one
 const addOne = document.getElementById('addOne');
 addOne.addEventListener('click', e => {
   e.preventDefault();
-  handleClick(1, form.elements['input-text'].value)
+  if (e.target.name === 'addne') {
+    handleClick(1, form.elements['input-text'].value);
+  } else {
+    console.log('worked!');
+  }
 });
 
 // add 10K items
 const button10K = document.getElementById('add10k');
 button10K.addEventListener('click', e => {
   e.preventDefault();
-  handleClick(10000, form.elements['input-text'].value)
+  handleClick(10000, form.elements['input-text'].value);
 });
 
 // add 100K items
 const button100K = document.getElementById('add100k');
 button100K.addEventListener('click', e => {
   e.preventDefault();
-  handleClick(100000, form.elements['input-text'].value)
+  handleClick(100000, form.elements['input-text'].value);
 });
-
 
 // add 500K items
 const button500k = document.getElementById('add500k');
 button500k.addEventListener('click', e => {
   e.preventDefault();
-  handleClick(500000, form.elements['input-text'].value)
+  handleClick(500000, form.elements['input-text'].value);
 });
