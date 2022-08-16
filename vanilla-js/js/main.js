@@ -30,14 +30,15 @@ function createTodo(text) {
 const render = () => {
   todoListEl.innerHTML = ''; // clear
   allTodos.forEach((item, i) => {
-    item.classList.add(`${i}`)
+    item.setAttribute('id', `${i}`)
     todoListEl.appendChild(item)
   })
 }
 
 const handleClickTodoItem = (e) => {
   let item = e.target.parentNode;
-  let id = e.target.id;
+  let id = item.id;
+
   if (e.target.name === 'completed') {
     item.style.textDecoration = item.style.textDecoration === 'line-through' ?
       'none' :
