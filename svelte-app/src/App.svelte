@@ -1,27 +1,34 @@
 <script>
-
-  let newTodo = '';
+  let newItem = '';
 
   let todoList = [];
 
   function addToList() {
-    todoList = [...todoList, {text: newTodo, status: false}];
-    newTodo = '';
+    if (!newItem) return
+    todoList = [...todoList, {text: newItem, status: false}];
+    newItem = '';
   }
-  
+
+  function removeFromList(index) {
+    todoList.splice(index, 1)
+    todoList = todoList;
+  }
 </script>
 
-
-<input bind:value={newTodo} type="text" placeholder="new todo item..">
+<input bind:value={newItem} type="text" placeholder="new todo item..">
 <button on:click={addToList}>Add</button>
 
 <br/>
 {#each todoList as item, index}
   <input bind:checked={item.status} type="checkbox">
   <span class:checked={item.status}>{item.text}</span>
+  <button on:click={() => removeFromList(index)}>X</button>
   <br/>
 {/each}
 
 
 <style>
+    .checked {
+        text-decoration: line-through;
+    }
 </style>
