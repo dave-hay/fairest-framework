@@ -10,9 +10,12 @@ let allTodos = [];
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  createTodo(form.elements['input-text'].value)
-  render()
-})
+  if (form.elements['input-text'].value !== '') {
+    createTodo(form.elements['input-text'].value);
+    form.elements['input-text'].value = '';
+    render();
+  }
+});
 
 // creates a single todo
 function createTodo(text) {
@@ -23,17 +26,17 @@ function createTodo(text) {
 <span>${text}</span>
 <button name='delete'>X</button>
 `;
-  newItem.addEventListener('click', handleClickTodoItem)
-  allTodos.push(newItem)
+  newItem.addEventListener('click', handleClickTodoItem);
+  allTodos.push(newItem);
 }
 
 const render = () => {
   todoListEl.innerHTML = ''; // clear
   allTodos.forEach((item, i) => {
-    item.setAttribute('id', `${i}`)
-    todoListEl.appendChild(item)
-  })
-}
+    item.setAttribute('id', `${i}`);
+    todoListEl.appendChild(item);
+  });
+};
 
 const handleClickTodoItem = (e) => {
   let item = e.target.parentNode;
@@ -46,12 +49,11 @@ const handleClickTodoItem = (e) => {
   }
 
   if (e.target.name === 'delete') {
-    allTodos.splice(+id, 1)
+    allTodos.splice(+id, 1);
   }
 
-  render()
+  render();
 };
-
 
 function handleClick(num, text) {
   const td = new Todos(num, text);
@@ -65,12 +67,11 @@ function handleClick(num, text) {
 const addOne = document.getElementById('addOne');
 addOne.addEventListener('click', e => {
   e.preventDefault();
-  createTodo(form.elements['input-text'].value)
-  render()
-
-/*
-    handleClick(1, form.elements['input-text'].value);
-*/
+  if (form.elements['input-text'].value !== '') {
+    createTodo(form.elements['input-text'].value);
+    form.elements['input-text'].value = '';
+    render();
+  }
 });
 
 // add 10K items
