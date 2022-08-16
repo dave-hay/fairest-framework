@@ -19,14 +19,19 @@ class Todos {
 
   _newArray() {
     for (let i = 0; i < this.num; i++) {
-      this.newItemArray.push(this._newTodo(this.text));
+      this.newItemArray.push(this._newTodo(this.text, i));
     }
   }
 
-  _newTodo(text) {
+  _newTodo(text, index) {
     const newItem = document.createElement('li');
+
+    const deleteTodo = (i) => {
+      // delete global var
+
+    }
     newItem.classList.add('todo');
-    newItem.textContent = text;
+    newItem.innerHTML = `<input onclick='' type='checkbox'> <span>${text}</span>`;
     return newItem;
   }
 

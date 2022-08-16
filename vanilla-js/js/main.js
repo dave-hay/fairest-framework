@@ -3,15 +3,30 @@ import Todos from './todos.js';
 const totalTime = document.getElementById('total-time');
 const totalItems = document.getElementById('total-items');
 const form = document.getElementById('add');
+const todoListEl = document.querySelector('.todos');
 
-let totalTodos = 0;
+let todoListCount = 0;
+let allTodos = []
+
+// creates a single todo
+function createTodo(text) {
+  const newItem = document.createElement('li');
+  newItem.classList.add('todo');
+  newItem.innerHTML = `<input onclick='' type='checkbox'> <span>${text}</span>`;
+  return newItem;
+}
+
+const deleteTodo = (i) => {
+  // delete global var
+
+}
 
 function handleClick(num, text) {
   const td = new Todos(num, text)
   td.makeTodos()
   totalTime.innerText = td.time
-  totalTodos += num;
-  totalItems.innerText = totalTodos
+  todoListCount += num;
+  totalItems.innerText = todoListCount
 }
 
 // add one
