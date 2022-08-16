@@ -22,6 +22,7 @@ form.addEventListener('submit', (e) => {
   }
 });
 
+// store as object?
 // creates a single todo
 function createTodo(text) {
   const newItem = document.createElement('li');
@@ -65,8 +66,8 @@ function handleClick(num) {
   form.elements['input-text'].value = '';
   render();
   const t1 = performance.now();
-  let time = (t1 - t0) + " ms";
-  totalTime.innerText = time.toString();
+  let time = (t1 - t0);
+  totalTime.innerText = time < 1000 ? time.toFixed(3) + " ms" : (time / 1000) + " s"
   totalItems.innerText = allTodos.length.toString();
 }
 
@@ -75,6 +76,20 @@ const addOne = document.getElementById('addOne');
 addOne.addEventListener('click', e => {
   e.preventDefault();
   handleClick(1)
+});
+
+// add 5K items
+const button1K = document.getElementById('add5k');
+button1K.addEventListener('click', e => {
+  e.preventDefault();
+  handleClick(1000)
+});
+
+// add 5K items
+const button5K = document.getElementById('add5k');
+button5K.addEventListener('click', e => {
+  e.preventDefault();
+  handleClick(5000)
 });
 
 // add 10K items
