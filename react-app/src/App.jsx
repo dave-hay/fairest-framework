@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const [inp, setInp] = useState('');
-  const [totalTime, setTotalTime] = useState('');
-  const [totalItems, setTotalItems] = useState('');
+  const [inp, setInp] = useState("");
+  const [totalTime, setTotalTime] = useState("");
+  const [totalItems, setTotalItems] = useState("");
 
   const handleClick = (e) => {
     e.preventDefault();
     setTodos([...todos, inp]);
-    setInp('');
+    setInp("");
   };
 
   const addXItems = (num) => {
@@ -32,13 +32,13 @@ function App() {
         <p>Total Time: {totalTime}</p>
         <p>Total Items: {totalItems}</p>
         <input
-          type='text'
+          type="text"
           value={inp}
           onChange={(e) => setInp(e.target.value)}
         />
-        <button type='button' onClick={handleClick}>Add</button>
+        <button type="button" onClick={handleClick}>Add</button>
         <button
-          type='button'
+          type="button"
           onClick={(e) => {
             e.preventDefault();
             // const t0 = performance.now();
@@ -51,9 +51,7 @@ function App() {
       </div>
       <div>
         <ul>
-          {todos.map((todo) => (
-            <li>{todo}</li>
-          ))}
+          {todos.map((todo) => <li>{todo}</li>)}
         </ul>
       </div>
     </div>
