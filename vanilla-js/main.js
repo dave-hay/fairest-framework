@@ -1,5 +1,3 @@
-import Todos from './todos.js';
-
 const totalTime = document.getElementById('total-time');
 const totalItems = document.getElementById('total-items');
 const form = document.getElementById('add');
