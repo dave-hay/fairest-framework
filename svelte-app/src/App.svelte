@@ -1,7 +1,8 @@
 <script>
   let newItem = '';
-
   let todoList = [];
+  let totalTime = '';
+  let totalItems = '';
 
   function removeFromList(index) {
     todoList.splice(index, 1);
@@ -10,14 +11,23 @@
 
   function addXToList(num) {
     if (!newItem) return;
+    const t0 = performance.now();
     let i = 0;
     while (i < num) {
       todoList = [...todoList, { text: newItem, status: false }];
       i++;
     }
     newItem = '';
+    const t1 = performance.now();
+    totalTime = (t1 - t0);
+    totalItems = todoList.length;
   }
 </script>
+<h1>Svelte Todo List</h1>
+<p>{totalTime}</p>
+<p>{totalItems}</p>
+
+<br />
 
 <input bind:value={newItem} type='text' placeholder='new todo item..'>
 <button on:click={() => addXToList(1)}>Add</button>
