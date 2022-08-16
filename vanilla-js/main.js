@@ -52,18 +52,20 @@ const handleClickTodoItem = (e) => {
   render();
 };
 
-function handleClick(num, text) {
+function handleClick(num) {
+  let text = form.elements['input-text'].value;
   if (text === '') return
   // loop and create todo
   let i = 0;
-
   const t0 = performance.now();
   while (i < num) {
     createTodo(text)
     i++;
   }
+  form.elements['input-text'].value = '';
+  render();
   const t1 = performance.now();
-  let time = (t1 - t0) / 1000;
+  let time = (t1 - t0) + " ms";
   totalTime.innerText = time.toString();
   totalItems.innerText = allTodos.length.toString();
 }
@@ -72,32 +74,26 @@ function handleClick(num, text) {
 const addOne = document.getElementById('addOne');
 addOne.addEventListener('click', e => {
   e.preventDefault();
-  if (form.elements['input-text'].value !== '') {
-    createTodo(form.elements['input-text'].value);
-    form.elements['input-text'].value = '';
-    render();
-  }
+  handleClick(1)
 });
 
 // add 10K items
 const button10K = document.getElementById('add10k');
 button10K.addEventListener('click', e => {
   e.preventDefault();
-  handleClick(10000, form.elements['input-text'].value);
-  form.elements['input-text'].value = '';
-  render();
+  handleClick(10000)
 });
 
 // add 100K items
 const button100K = document.getElementById('add100k');
 button100K.addEventListener('click', e => {
   e.preventDefault();
-  handleClick(100000, form.elements['input-text'].value);
+  handleClick(100000);
 });
 
 // add 500K items
 const button500k = document.getElementById('add500k');
 button500k.addEventListener('click', e => {
   e.preventDefault();
-  handleClick(500000, form.elements['input-text'].value);
+  handleClick(500000);
 });
