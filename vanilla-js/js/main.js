@@ -8,18 +8,31 @@ const todoListEl = document.querySelector('.todos');
 let todoListCount = 0;
 let allTodos = [];
 
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  createTodo(form.elements['input-text'].value)
+  render()
+})
+
 // creates a single todo
-function createTodo(text, index) {
+function createTodo(text) {
   const newItem = document.createElement('li');
   newItem.classList.add('todo');
-  newItem.classList.add(`${index}`);
   newItem.innerHTML = `
 <input name='completed' type='checkbox'> 
 <span>${text}</span>
-<input name='delete' type='button'>
+<button name='delete'>X</button>
 `;
   newItem.addEventListener('click', handleClickTodoItem)
-  return newItem;
+  allTodos.push(newItem)
+}
+
+const render = () => {
+  todoListEl.innerHTML = ''; // clear
+  allTodos.forEach((item, i) => {
+    item.classList.add(`${i}`)
+    todoListEl.appendChild(item)
+  })
 }
 
 const handleClickTodoItem = (e) => {
@@ -34,11 +47,10 @@ const handleClickTodoItem = (e) => {
   if (e.target.name === 'delete') {
     allTodos.splice(+id, 1)
   }
+
+  render()
 };
 
-const deleteTodo = (i) => {
-  allTodos.splice(i, 1);
-};
 
 function handleClick(num, text) {
   const td = new Todos(num, text);
@@ -52,11 +64,12 @@ function handleClick(num, text) {
 const addOne = document.getElementById('addOne');
 addOne.addEventListener('click', e => {
   e.preventDefault();
-  if (e.target.name === 'addne') {
+  createTodo(form.elements['input-text'].value)
+  render()
+
+/*
     handleClick(1, form.elements['input-text'].value);
-  } else {
-    console.log('worked!');
-  }
+*/
 });
 
 // add 10K items
