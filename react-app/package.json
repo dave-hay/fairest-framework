@@ -12,7 +12,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "build": "BUILD_PATH='../dist' react-scripts build",
+    "build": "BUILD_PATH='../dist/react-app' react-scripts build",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
