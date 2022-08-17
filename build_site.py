@@ -2,14 +2,6 @@
 
 import os
 from pathlib import Path
-# import subprocess
-
-# os.system('echo "hello world"')
-###
-# print(os.getcwd())
-# print(os.path.relpath(os.curdir))
-# subprocess.Popen([f'cd {dir}', "yarn build", ".."])
-###
 
 p = Path('.')
 dirs = [x for x in p.iterdir() if x.is_dir() if 'app' in str(x)]
@@ -20,4 +12,11 @@ for dir in dirs:
     os.system('yarn build')
     os.chdir(prev)
 
-# print(idk)
+# TODO: cd to dist dir
+# TODO: angular: rm '<base href="/">'
+# TODO: svelte: rm '/' from href=" src="
+# TODO: react: rm <link rel="apple-touch-icon" href="/logo192.png" /><link rel="manifest" href="/manifest.json" />
+# TODO: react: rm '/' from href=" src="
+# TODO: vue: rm '/' from href=" src="
+
+# angular
