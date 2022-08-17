@@ -15,6 +15,8 @@ function App() {
     setTodos([...todos, ...newItems]);
     const t1 = performance.now();
     const time = (t1 - t0);
+    const toWrite = `${num}: ${time} ms`
+    console.log(toWrite);
     const totalTime = time < 1000 ? time.toFixed(3) + " ms" : (time / 1000).toFixed(2) + " s"
     setTotalTime(`${totalTime}`);
     setTotalItems(+totalItems + num);
