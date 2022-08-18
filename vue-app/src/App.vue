@@ -34,24 +34,27 @@ export default {
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
   <h1>My Todos</h1>
   <p>Total Time: {{ totalTime }}</p>
   <p>Total Items: {{ totalItems }}</p>
   <form @submit.prevent="addTodo">
-    <input v-model="newTodo" />
-    <button @click="addXItems(1)">Add 1</button>
-    <button @click="addXItems(1000)">Add 1K</button>
-    <button @click="addXItems(5000)">Add 5K</button>
-    <button @click="addXItems(10000)">Add 10K</button>
-    <button @click="addXItems(50000)">Add 50K</button>
-    <button @click="addXItems(100000)">Add 100K</button>
+    <input class="todo-input" v-model="newTodo" />
+    <div class="todo-buttons">
+      <button @click="addXItems(1)">Add 1</button>
+      <button @click="addXItems(1000)">Add 1K</button>
+      <button @click="addXItems(5000)">Add 5K</button>
+      <button @click="addXItems(10000)">Add 10K</button>
+      <button @click="addXItems(50000)">Add 50K</button>
+      <button @click="addXItems(100000)">Add 100K</button>
+    </div>
   </form>
   <ul>
     <li v-for="todo in todos" :key="todo.id">
       <input type="checkbox" v-model="todo.status" />
-      <span :class="{ checked: todo.status }">{{ todo.text }}</span>
-      <button @click="removeTodo(todo)">x</button>
+      <span class="text" :class="{ checked: todo.status }">{{
+        todo.text
+      }}</span>
+      <button class="button" @click="removeTodo(todo)">x</button>
     </li>
   </ul>
 </template>
@@ -76,8 +79,45 @@ ul {
   list-style-type: none;
   padding: 0;
 }
-a {
-  color: #42b983;
+li {
+  background-color: #42b983; /* Green */
+  display: flex;
+  justify-content: space-between;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+.button {
+  background-color: transparent; /* Green */
+  border: none;
+  color: white;
+  padding: 0px 3px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+.todo-input {
+  margin: 0 auto;
+}
+
+.todo-buttons {
+  margin: 1rem;
+}
+
+.todo-buttons button {
+  margin: 0 2px;
+  background-color: #42b983; /* Green */
+  border: none;
+  color: white;
+  cursor: pointer;
+  box-shadow: 5px 10px;
+}
+
+.text {
+  margin: 0px 10px;
 }
 .checked {
   text-decoration: line-through;
