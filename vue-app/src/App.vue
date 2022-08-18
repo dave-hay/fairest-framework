@@ -17,7 +17,7 @@ export default {
     addXItems(num) {
       let t0 = performance.now();
       for (let i = 0; i < num; i++) {
-        this.todos.push({ id: id++, text: this.newTodo });
+        this.todos.push({ id: id++, text: this.newTodo, status: false });
       }
       this.newTodo = "";
       let t1 = performance.now();
@@ -49,7 +49,8 @@ export default {
   </form>
   <ul>
     <li v-for="todo in todos" :key="todo.id">
-      {{ todo.text }}
+      <input type="checkbox" v-model="todo.status" />
+      <span :class="{ checked: todo.status }">{{ todo.text }}</span>
       <button @click="removeTodo(todo)">x</button>
     </li>
   </ul>
@@ -77,5 +78,8 @@ ul {
 }
 a {
   color: #42b983;
+}
+.checked {
+  text-decoration: line-through;
 }
 </style>
