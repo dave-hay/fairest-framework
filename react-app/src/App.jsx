@@ -14,10 +14,11 @@ function App() {
     }
     setTodos([...todos, ...newItems]);
     const t1 = performance.now();
-    const time = (t1 - t0);
-    const toWrite = `${num}: ${time} ms`
+    const time = t1 - t0;
+    const toWrite = `${num}: ${time} ms`;
     console.log(toWrite);
-    const totalTime = time < 1000 ? time.toFixed(3) + " ms" : (time / 1000).toFixed(2) + " s"
+    const totalTime =
+      time < 1000 ? time.toFixed(3) + " ms" : (time / 1000).toFixed(2) + " s";
     setTotalTime(`${totalTime}`);
     setTotalItems(+totalItems + num);
   };
@@ -33,23 +34,17 @@ function App() {
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
         />
-        <button type="button" onClick={(e) => {
-          e.preventDefault();
-          addXItems(1);
-        }}>Add</button>
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            addXItems(10000);
-          }}
-        >
-          Add 10K
-        </button>
+        <button onClick={() => addXItems(1)}>Add 1</button>
+        <button onClick={() => addXItems(1000)}>Add 1K</button>
+        <button onClick={() => addXItems(10000)}>Add 10K</button>
+        <button onClick={() => addXItems(50000)}>Add 50K</button>
+        <button onClick={() => addXItems(100000)}>Add 100K</button>
       </div>
       <div>
         <ul>
-          {todos.map((todo) => <li>{todo}</li>)}
+          {todos.map((todo) => {
+            return <li>{todo}</li>;
+          })}
         </ul>
       </div>
     </div>
