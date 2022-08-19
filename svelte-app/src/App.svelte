@@ -37,7 +37,6 @@
 <button on:click={() => addXToList(5000)}>Add5K</button>
 <button on:click={() => addXToList(10000)}>Add10K</button>
 <button on:click={() => addXToList(100000)}>Add100K</button>
-<button on:click={() => addXToList(500000)}>Add500K</button>
 
 <br />
 {#each todoList as item, index}

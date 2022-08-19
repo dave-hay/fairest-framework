@@ -1,7 +1,5 @@
 <script>
 let id = 0;
-/* let totalTime = 0;
-let totalItems = 0; */
 
 export default {
   name: "App",
