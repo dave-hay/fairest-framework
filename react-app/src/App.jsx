@@ -6,11 +6,22 @@ function App() {
   const [totalTime, setTotalTime] = useState("");
   const [totalItems, setTotalItems] = useState("");
 
+  const checkItem = (td) => {
+    const newTodos = [...todos];
+    newTodos[td.id] = { id: td.id, text: td.text, status: true };
+    setTodos(newTodo);
+  };
+
+  const removeFromList = (td) => {
+    const newTodos = todos.filter((t) => t !== td);
+    setTodos(newTodos);
+  };
+
   const addXItems = (num) => {
     const t0 = performance.now();
     const newItems = [];
     for (let i = 0; i < num; i++) {
-      newItems.push(newTodo);
+      newItems.push({ id: i, text: newTodo, status: false });
     }
     setTodos([...todos, ...newItems]);
     const t1 = performance.now();
@@ -42,8 +53,20 @@ function App() {
       </div>
       <div>
         <ul>
-          {todos.map((todo) => {
-            return <li>{todo}</li>;
+          {todos.map((todo, i) => {
+            return (
+              <li>
+                <input type="checkbox" onClick={() => checkItem(todo)} />
+                <span
+                  style={{
+                    textDecoration: todo.status ? "line-through" : "none",
+                  }}
+                >
+                  {todo.text}
+                </span>
+                <button onClick={() => removeFromList(todo)}>X</button>
+              </li>
+            );
           })}
         </ul>
       </div>
