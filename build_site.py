@@ -1,24 +1,16 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
+import logging
 import os
-from pathlib import Path
+import threading
+from pathlib import Path, PurePosixPath
 
-p = Path('.')
-dirs = [x for x in p.iterdir() if x.is_dir() if 'app' in str(x)]
 
-for dir in dirs:
-    prev = Path.cwd()
-    os.chdir(prev / dir)
-    os.system('yarn build')
-    os.chdir(prev)
-
-dist_path = Path('./dist/')
-dist_dirs = [
-    str(x) for x in dist_path.iterdir() if x.is_dir() if 'app' in str(x)
-]
-
-# angular: rm '<base href="/">'
-for dir in dist_dirs:
+def update_dist(last_dir):
+    pure = PurePosixPath(last_dir)
+    par = str(pure.parent)
+    cur = str(pure.name)
+    dir = str(par + '/dist/' + cur)
     if 'angular' in dir:
         ang = []
         with open(dir + "/index.html", 'r') as fp:
@@ -31,8 +23,6 @@ for dir in dist_dirs:
                 fp.write(newLine)
             fp.close()
 
-# react
-# rm <link rel="apple-touch-icon" href="/logo192.png" /><link rel="manifest" href="/manifest.json" />
     if 'react' in dir:
         react_html = []
         with open(dir + "/index.html", 'r') as fp:
@@ -46,7 +36,6 @@ for dir in dist_dirs:
                 fp.write(newLine)
             fp.close()
 
-# svelte, vue, react
     if 'svelte' in dir or 'vue' in dir or 'react' in dir:
         html = []
         with open(dir + "/index.html", 'r') as fp:
@@ -60,3 +49,38 @@ for dir in dist_dirs:
             for newLine in html:
                 fp.write(newLine)
             fp.close()
+
+
+def build_dist(dir):
+    logging.info("Thread %s: starting", dir)
+
+    prev = Path.cwd()
+    os.chdir(prev / dir)
+    os.system('yarn build')
+    os.chdir(prev)
+
+    logging.info("Thread %s: Finish download", dir)
+    logging.info("Thread %s: starting edits", dir)
+
+    update_dist(dir)
+
+    logging.info("Thread %s: finishing edits", dir)
+
+
+if __name__ == "__main__":
+    format = "%(asctime)s: %(message)s"
+    logging.basicConfig(format=format, level=logging.INFO, datefmt="%H:%M:%S")
+    p = Path('.')
+
+    logging.info("Start...")
+    dirs = [x for x in p.iterdir() if x.is_dir() if 'app' in str(x)]
+    # dist_path = Path('./dist/')
+    # dist_dirs = [
+    #     str(x) for x in dist_path.iterdir() if x.is_dir() if 'app' in str(x)
+    # ]
+
+    for dir in dirs:
+        x = threading.Thread(target=build_dist, args=(dir, ))
+        x.start()
+        # call thrud
+    logging.info("Main    : all done")
