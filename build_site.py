@@ -17,13 +17,6 @@ dist_dirs = [
     str(x) for x in dist_path.iterdir() if x.is_dir() if 'app' in str(x)
 ]
 
-
-def updateFile(dir):
-    with open(dir, 'r') as fp:
-        for line in fp:
-            if '<base href="/">' in line: continue
-
-
 # angular: rm '<base href="/">'
 for dir in dist_dirs:
     if 'angular' in dir:
@@ -38,7 +31,32 @@ for dir in dist_dirs:
                 fp.write(newLine)
             fp.close()
 
-# TODO: svelte: rm '/' from href=" src="
-# TODO: vue: rm '/' from href=" src="
-# TODO: react: rm '/' from href=" src="
-# TODO: react: rm <link rel="apple-touch-icon" href="/logo192.png" /><link rel="manifest" href="/manifest.json" />
+# react
+# rm <link rel="apple-touch-icon" href="/logo192.png" /><link rel="manifest" href="/manifest.json" />
+    if 'react' in dir:
+        react_html = []
+        with open(dir + "/index.html", 'r') as fp:
+            for line in fp:
+                if '<link rel="apple-touch-icon' in line: continue
+                if '<link rel="manifest' in line: continue
+                else: react_html.append(line)
+            fp.close()
+        with open(dir + "/index.html", 'w') as fp:
+            for newLine in react_html:
+                fp.write(newLine)
+            fp.close()
+
+# svelte, vue, react
+    if 'svelte' in dir or 'vue' in dir or 'react' in dir:
+        html = []
+        with open(dir + "/index.html", 'r') as fp:
+            for line in fp:
+                if 'href="/' in line or 'src="/' in line:
+                    html.append(line.replace('="/', '="'))
+                else:
+                    html.append(line)
+            fp.close()
+        with open(dir + "/index.html", 'w') as fp:
+            for newLine in html:
+                fp.write(newLine)
+            fp.close()
