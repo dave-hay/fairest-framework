@@ -39,8 +39,6 @@ for dir in dist_dirs:
             fp.close()
 
 # TODO: svelte: rm '/' from href=" src="
-# TODO: react: rm <link rel="apple-touch-icon" href="/logo192.png" /><link rel="manifest" href="/manifest.json" />
-# TODO: react: rm '/' from href=" src="
 # TODO: vue: rm '/' from href=" src="
-
-# angular
+# TODO: react: rm '/' from href=" src="
+# TODO: react: rm <link rel="apple-touch-icon" href="/logo192.png" /><link rel="manifest" href="/manifest.json" />
