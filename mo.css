@@ -5,9 +5,11 @@
 .examples {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .examples li {
+    min-width: 200px;
     width: calc(100% / 5);
     display: flex;
     flex-direction: column;
@@ -31,4 +33,8 @@
 
 .hero h1 {
     font-size: 150px;
+}
+
+.hero p {
+    font-size: 30px;
 }
