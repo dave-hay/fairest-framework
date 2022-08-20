@@ -2,6 +2,10 @@
     list-style: none;
 }
 
+main h2 {
+    text-align: center;
+}
+
 .layout {
     display: flex;
     flex-direction: column;
@@ -39,6 +43,11 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 1.5rem;
+}
+
+
+.hero.links {
+
 }
 
 .hero h1 {
