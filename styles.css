@@ -349,6 +349,19 @@ a.button:hover {
   border-color: var(--border-color-hover);
 }
 
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: var(--content-width);
+  padding: 0 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .red-1 {
   background: var(--red-1);
 }
