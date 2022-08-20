@@ -23,8 +23,8 @@ def config(framework):
         if framework in str(x)
     ]
 
-    # angular: rm '<base href="/">'
     for dir in dist_dirs:
+        # angular
         if 'angular' in dir:
             ang = []
             with open(dir + "/index.html", 'r') as fp:
@@ -37,23 +37,29 @@ def config(framework):
                     fp.write(newLine)
                 fp.close()
 
-# rm <link rel="apple-touch-icon" href="/logo192.png" /><link rel="manifest" href="/manifest.json" />
+        # react
         if 'react' in dir:
-            react_html = []
-            with open(dir + "/index.html", 'r') as fp:
+            updated = []
+            with open('index.html', 'r') as fp:
                 for line in fp:
-                    if '<link rel="apple-touch-icon' in line: continue
-                    if '<link rel="manifest' in line: continue
-                    else: react_html.append(line)
-                fp.close()
-            with open(dir + "/index.html", 'w') as fp:
-                for newLine in react_html:
-                    fp.write(newLine)
+                    r = line.replace('>', '>\n')
+                    updated = r.split('\n')
                 fp.close()
 
+            with open('index.html', 'w') as fp:
+                for l in updated:
+                    if '' == l: continue
+                    if '<link rel="apple-touch-icon' in l: continue
+                    if '<link rel="manifest' in l: continue
+                    if 'href="/' in l or 'src="/' in l:
+                        nl = l.replace('="/', '="')
+                        fp.write(nl + '\n')
+                    else:
+                        fp.write(l + '\n')
+                fp.close()
 
-# svelte, vue, react
-        if 'svelte' in dir or 'vue' in dir or 'react' in dir:
+        # svelte, vue
+        if 'svelte' in dir or 'vue' in dir:
             html = []
             with open(dir + "/index.html", 'r') as fp:
                 for line in fp:
@@ -66,6 +72,7 @@ def config(framework):
                 for newLine in html:
                     fp.write(newLine)
                 fp.close()
+
 
 if __name__ == "__main__":
     args = sys.argv[1:]  # rm script name
@@ -81,4 +88,4 @@ if __name__ == "__main__":
         if arg.lower() in kywds:
             print(f'building {arg}')
             build(arg.lower())
-            # config(arg.lower())
+            config(arg.lower())
