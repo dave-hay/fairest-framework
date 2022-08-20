@@ -43,29 +43,29 @@ main h2 {
 }
 
 .hero h1 {
-  font-size: 9rem;
+  font-size: 4rem;
 }
 
 .sub {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  letter-spacing: 1.5px;
 }
 
-@media screen and (max-width: 1250px) {
-  .hero h1 {
-    font-size: 5rem;
-  }
-  .hero > .sub {
-    font-size: 1.5rem;
-  }
+.button.large.start {
+  background-color: var(--blue);
+  color: var(--gray-2);
 }
 
-@media screen and (max-width: 805px) {
-  .hero h1 {
-    font-size: 3rem;
-  }
-  .hero > .sub {
-    font-size: 1rem;
-  }
+.button.large.cta {
+  color: var(--blue);
+  border: none;
+}
+
+.description {
+  width: 60rem;
+  padding: 1rem 10rem;
+  font-size: 0.9rem;
 }
 
 @media screen and (max-width: 400px) {
