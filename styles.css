@@ -187,9 +187,9 @@ li::marker {
   color: var(--marker);
 }
 
-main {
-  margin-top: 60px;
-}
+/*main {*/
+/*  margin-top: 60px;*/
+/*}*/
 
 /* Blockquote */
 
