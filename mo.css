@@ -1,83 +1,74 @@
 * {
-    list-style: none;
+  list-style: none;
 }
 
 main h2 {
-    text-align: center;
+  text-align: center;
 }
 
 .layout {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    justify-content: center;
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+  padding: 1rem;
 }
 
-
 .examples {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .examples li {
-    min-width: 150px;
-    width: calc(100% / 5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.examples a {
+  min-width: 150px;
+  width: calc(100% / 5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .examples img {
-    display: block;
-    height: 150px;
-    padding: 1rem;
+  display: block;
+  height: 150px;
+  padding: 1rem;
 }
 
 .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-
-.hero.links {
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .hero h1 {
-    /*font-size: 150px;*/
-    font-size: 9rem;
+  font-size: 9rem;
 }
 .hero p {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
-@media screen and (max-width: 1200px) {
-    .hero h1 {
-        font-size: 5rem;
-    }
+@media screen and (max-width: 1250px) {
+  .hero h1 {
+    font-size: 5rem;
+  }
+  .hero p {
+    font-size: 1.5rem;
+  }
 }
 
-@media screen and (max-width: 800px) {
-    .hero p {
-        font-size: 1rem;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .hero h1 {
-        font-size: 3rem;
-    }
+@media screen and (max-width: 805px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
 }
 
 @media screen and (max-width: 400px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
+  .hero h1 {
+    font-size: 2rem;
+  }
 }
