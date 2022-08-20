@@ -40,13 +40,13 @@ def config(framework):
         # react
         if 'react' in dir:
             updated = []
-            with open('index.html', 'r') as fp:
+            with open(dir + '/index.html', 'r') as fp:
                 for line in fp:
                     r = line.replace('>', '>\n')
                     updated = r.split('\n')
                 fp.close()
 
-            with open('index.html', 'w') as fp:
+            with open(dir + '/index.html', 'w') as fp:
                 for l in updated:
                     if '' == l: continue
                     if '<link rel="apple-touch-icon' in l: continue
