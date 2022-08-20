@@ -78,8 +78,8 @@ addOne.addEventListener("click", (e) => {
   handleClick(1);
 });
 
-// add 5K items
-const button1K = document.getElementById("add5k");
+// add 1K items
+const button1K = document.getElementById("add1k");
 button1K.addEventListener("click", (e) => {
   e.preventDefault();
   handleClick(1000);
