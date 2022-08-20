@@ -45,7 +45,8 @@ main h2 {
 .hero h1 {
   font-size: 9rem;
 }
-.hero p {
+
+.sub {
   font-size: 2rem;
 }
 
@@ -53,7 +54,7 @@ main h2 {
   .hero h1 {
     font-size: 5rem;
   }
-  .hero p {
+  .hero > .sub {
     font-size: 1.5rem;
   }
 }
@@ -62,7 +63,7 @@ main h2 {
   .hero h1 {
     font-size: 3rem;
   }
-  .hero p {
+  .hero > .sub {
     font-size: 1rem;
   }
 }
