@@ -6,32 +6,48 @@
     <meta name="keywords" content="one, two, three" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Blank Template</title>
+    <title>Vanilla JS</title>
 
     <!-- external CSS link -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div id="container">
-      <div>
-        <h1>My Todos</h1>
-        <p>Total time: <span id="total-time"></span></p>
-        <p>Total items: <span id="total-items"></span></p>
+      <div class="header">
+        <h1>Vanilla JS Todos</h1>
+        <img class="logo" src="logo.png" alt="javascript logo" />
+        <div class="results-container">
+          <p>Total time: <span class="results" id="total-time">0</span></p>
+          <p>Total items: <span class="results" id="total-items">0</span></p>
+        </div>
       </div>
       <form id="add" action="">
-        <label for="input-text">New Todo</label>
-        <input
-          type="text"
-          id="input-text"
-          name="input-text"
-          placeholder="Add new todo..."
-        />
-        <button type="button" id="addOne">Add</button>
-        <button type="button" id="add1k">Add 1K</button>
-        <button type="button" id="add5k">Add 5K</button>
-        <button type="button" id="add10k">Add 10K</button>
-        <button type="button" id="add50k">Add 50K</button>
-        <button type="button" id="add100k">Add 100K</button>
+        <div class="input-container">
+          <input
+            type="text"
+            id="input-text"
+            name="input-text"
+            placeholder="Add new todo..."
+          />
+        </div>
+        <div class="todo-buttons">
+          <button class="add-todo-button" type="button" id="addOne">Add</button>
+          <button class="add-todo-button" type="button" id="add1k">
+            Add 1K
+          </button>
+          <button class="add-todo-button" type="button" id="add5k">
+            Add 5K
+          </button>
+          <button class="add-todo-button" type="button" id="add10k">
+            Add 10K
+          </button>
+          <button class="add-todo-button" type="button" id="add50k">
+            Add 50K
+          </button>
+          <button class="add-todo-button" type="button" id="add100k">
+            Add 100K
+          </button>
+        </div>
       </form>
       <ul class="todos"></ul>
     </div>

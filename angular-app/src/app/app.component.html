@@ -24,27 +24,25 @@
     id="addItemInput"
   />
 
-  <button class="btn-primary" (click)="addXItems(1, newItem.value)">
-    Add 1
-  </button>
-  <button class="btn-primary" (click)="addXItems(1000, newItem.value)">
+  <button class="button" (click)="addXItems(1, newItem.value)">Add 1</button>
+  <button class="button" (click)="addXItems(1000, newItem.value)">
     Add 1K
   </button>
-  <button class="btn-primary" (click)="addXItems(5000, newItem.value)">
+  <button class="button" (click)="addXItems(5000, newItem.value)">
     Add 5K
   </button>
-  <button class="btn-primary" (click)="addXItems(10000, newItem.value)">
+  <button class="button" (click)="addXItems(10000, newItem.value)">
     Add 10K
   </button>
-  <button class="btn-primary" (click)="addXItems(50000, newItem.value)">
+  <button class="button" (click)="addXItems(50000, newItem.value)">
     Add 50K
   </button>
-  <button class="btn-primary" (click)="addXItems(100000, newItem.value)">
+  <button class="button" (click)="addXItems(100000, newItem.value)">
     Add 100K
   </button>
 
-  <ul>
-    <li *ngFor="let todo of todos">
+  <ul class="todos">
+    <li class="todo" *ngFor="let todo of todos">
       <input type="checkbox" (click)="completeItem(todo)" />
       <span class="text" [ngClass]="{ checked: todo.status }">
         {{ todo.description }}
