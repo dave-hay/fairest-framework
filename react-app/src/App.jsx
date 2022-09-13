@@ -50,18 +50,30 @@ function App() {
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
         />
-        <button onClick={() => addXItems(1)}>Add 1</button>
-        <button onClick={() => addXItems(1000)}>Add 1K</button>
-        <button onClick={() => addXItems(5000)}>Add 5K</button>
-        <button onClick={() => addXItems(10000)}>Add 10K</button>
-        <button onClick={() => addXItems(50000)}>Add 50K</button>
-        <button onClick={() => addXItems(100000)}>Add 100K</button>
+        <button className={"button"} onClick={() => addXItems(1)}>
+          Add 1
+        </button>
+        <button className={"button"} onClick={() => addXItems(1000)}>
+          Add 1K
+        </button>
+        <button className={"button"} onClick={() => addXItems(5000)}>
+          Add 5K
+        </button>
+        <button className={"button"} onClick={() => addXItems(10000)}>
+          Add 10K
+        </button>
+        <button className={"button"} onClick={() => addXItems(50000)}>
+          Add 50K
+        </button>
+        <button className={"button"} onClick={() => addXItems(100000)}>
+          Add 100K
+        </button>
       </div>
       <div>
-        <ul>
+        <ul className={"todos"}>
           {todos.map((todo) => {
             return (
-              <li>
+              <li className={"todo"}>
                 <input type="checkbox" onClick={() => checkItem(todo)} />
                 <span
                   style={{
