@@ -1,10 +1,11 @@
 import { useState } from "react";
+import Logo from "./logo.png";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
-  const [totalTime, setTotalTime] = useState("");
-  const [totalItems, setTotalItems] = useState("");
+  const [totalTime, setTotalTime] = useState("0");
+  const [totalItems, setTotalItems] = useState("0");
 
   const checkItem = (cur) => {
     const newTodos = todos.map((t) => {
@@ -40,54 +41,76 @@ function App() {
   };
 
   return (
-    <div>
-      <div>
-        <h1>My Todos</h1>
-        <p>Total Time: {totalTime}</p>
-        <p>Total Items: {totalItems}</p>
-        <input
-          type="text"
-          value={newTodo}
-          onChange={(e) => setNewTodo(e.target.value)}
-        />
-        <button className={"button"} onClick={() => addXItems(1)}>
-          Add 1
-        </button>
-        <button className={"button"} onClick={() => addXItems(1000)}>
-          Add 1K
-        </button>
-        <button className={"button"} onClick={() => addXItems(5000)}>
-          Add 5K
-        </button>
-        <button className={"button"} onClick={() => addXItems(10000)}>
-          Add 10K
-        </button>
-        <button className={"button"} onClick={() => addXItems(50000)}>
-          Add 50K
-        </button>
-        <button className={"button"} onClick={() => addXItems(100000)}>
-          Add 100K
-        </button>
+    <div id="container">
+      <div className="header">
+        <h1>React Todos</h1>
+        <img className="logo" src={Logo} alt="javascript logo" />
+        <div className="results-container">
+          <p>
+            Total Time: <span className="results">{totalTime}</span>
+          </p>
+          <p>
+            Total Items: <span className="results">{totalItems}</span>
+          </p>
+        </div>
       </div>
       <div>
-        <ul className={"todos"}>
-          {todos.map((todo) => {
-            return (
-              <li className={"todo"}>
-                <input type="checkbox" onClick={() => checkItem(todo)} />
-                <span
-                  style={{
-                    textDecoration: todo.status ? "line-through" : "none",
-                  }}
-                >
-                  {todo.text}
-                </span>
-                <button onClick={() => removeFromList(todo)}>X</button>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="input-container">
+          <input
+            type="text"
+            id="input-text"
+            placeholder="Add new todo..."
+            value={newTodo}
+            onChange={(e) => setNewTodo(e.target.value)}
+          />
+        </div>
+        <div className="todo-buttons">
+          <button className={"add-todo-button"} onClick={() => addXItems(1)}>
+            Add 1
+          </button>
+          <button className={"add-todo-button"} onClick={() => addXItems(1000)}>
+            Add 1K
+          </button>
+          <button className={"add-todo-button"} onClick={() => addXItems(5000)}>
+            Add 5K
+          </button>
+          <button
+            className={"add-todo-button"}
+            onClick={() => addXItems(10000)}
+          >
+            Add 10K
+          </button>
+          <button
+            className={"add-todo-button"}
+            onClick={() => addXItems(50000)}
+          >
+            Add 50K
+          </button>
+          <button
+            className={"add-todo-button"}
+            onClick={() => addXItems(100000)}
+          >
+            Add 100K
+          </button>
+        </div>
       </div>
+      <ul className={"todos"}>
+        {todos.map((todo) => {
+          return (
+            <li className={"todo"}>
+              <input type="checkbox" onClick={() => checkItem(todo)} />
+              <span
+                style={{
+                  textDecoration: todo.status ? "line-through" : "none",
+                }}
+              >
+                {todo.text}
+              </span>
+              <button onClick={() => removeFromList(todo)}>X</button>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
