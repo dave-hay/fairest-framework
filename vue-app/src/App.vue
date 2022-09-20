@@ -32,29 +32,48 @@ export default {
 </script>
 
 <template>
-  <h1>My Todos</h1>
-  <p>Total Time: {{ totalTime }}</p>
-  <p>Total Items: {{ totalItems }}</p>
-  <form @submit.prevent="addTodo">
-    <input class="todo-input" v-model="newTodo" />
-    <div class="todo-buttons">
-      <button class="button" @click="addXItems(1)">Add 1</button>
-      <button class="button" @click="addXItems(1000)">Add 1K</button>
-      <button class="button" @click="addXItems(5000)">Add 5K</button>
-      <button class="button" @click="addXItems(10000)">Add 10K</button>
-      <button class="button" @click="addXItems(50000)">Add 50K</button>
-      <button class="button" @click="addXItems(100000)">Add 100K</button>
+  <div id="container">
+    <div class="header">
+      <h1>My Todos</h1>
+      <img class="logo" src="./assets/logo.png" alt="logo" />
+      <div class="results-container">
+        <p>
+          Total Time: <span class="results">{{ totalTime }}</span>
+        </p>
+        <p>
+          Total Items: <span class="results">{{ totalItems }}</span>
+        </p>
+      </div>
     </div>
-  </form>
-  <ul class="todos">
-    <li class="todo" v-for="todo in todos" :key="todo.id">
-      <input type="checkbox" v-model="todo.status" />
-      <span class="text" :class="{ checked: todo.status }">{{
-        todo.text
-      }}</span>
-      <button class="button" @click="removeTodo(todo)">x</button>
-    </li>
-  </ul>
+    <form id="add" @submit.prevent="addTodo">
+      <div class="input-container">
+        <input id="input-text" v-model="newTodo" />
+      </div>
+      <div class="todo-buttons">
+        <button class="add-todo-button" @click="addXItems(1)">Add 1</button>
+        <button class="add-todo-button" @click="addXItems(1000)">Add 1K</button>
+        <button class="add-todo-button" @click="addXItems(5000)">Add 5K</button>
+        <button class="add-todo-button" @click="addXItems(10000)">
+          Add 10K
+        </button>
+        <button class="add-todo-button" @click="addXItems(50000)">
+          Add 50K
+        </button>
+        <button class="add-todo-button" @click="addXItems(100000)">
+          Add 100K
+        </button>
+      </div>
+    </form>
+    <ul class="todos">
+      <li class="todo" v-for="todo in todos" :key="todo.id">
+        <input type="checkbox" v-model="todo.status" />
+        <span class="text" :class="{ checked: todo.status }">{{
+          todo.text
+        }}</span>
+        <button class="button" @click="removeTodo(todo)">x</button>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <style>
