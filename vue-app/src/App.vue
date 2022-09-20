@@ -7,7 +7,7 @@ export default {
     return {
       newTodo: "",
       todos: [],
-      totalTime: "0 ms",
+      totalTime: "0",
       totalItems: 0,
     };
   },
@@ -35,7 +35,11 @@ export default {
   <div id="container">
     <div class="header">
       <h1>My Todos</h1>
-      <img class="logo" src="./assets/logo.png" alt="logo" />
+      <img
+        class="logo"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2367px-Vue.js_Logo_2.svg.png"
+        alt="logo"
+      />
       <div class="results-container">
         <p>
           Total Time: <span class="results">{{ totalTime }}</span>

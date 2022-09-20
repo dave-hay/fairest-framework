@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Logo from "./logo.png";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -44,7 +43,13 @@ function App() {
     <div id="container">
       <div className="header">
         <h1>React Todos</h1>
-        <img className="logo" src={Logo} alt="javascript logo" />
+        <img
+          className="logo"
+          src={
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png?20220125121207"
+          }
+          alt="javascript logo"
+        />
         <div className="results-container">
           <p>
             Total Time: <span className="results">{totalTime}</span>
