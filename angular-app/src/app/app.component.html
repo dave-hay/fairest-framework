@@ -11,35 +11,55 @@
   }
 </style>
 
-<div class="main">
-  <h1>My To Do List</h1>
-  <p>{{ totalTime }}</p>
-  <p>{{ totalItems }}</p>
+<div id="container">
+  <div class="header">
+    <h1>My To Do List</h1>
+    <img
+      class="logo"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png"
+      alt="logo"
+    />
+    <div class="results-container">
+      <p>
+        Total time: <span class="results" id="total-time">{{ totalTime }}</span>
+      </p>
+      <p>
+        Total items:
+        <span class="results" id="total-items">{{ totalItems }}</span>
+      </p>
+    </div>
+  </div>
 
-  <input
-    #newItem
-    placeholder="add an item"
-    (keyup.enter)="addXItems(1, newItem.value); newItem.value = ''"
-    class="lg-text-input"
-    id="addItemInput"
-  />
+  <div id="add">
+    <div class="input-container">
+      <input
+        #newItem
+        placeholder="add an item"
+        (keyup.enter)="addXItems(1, newItem.value); newItem.value = ''"
+        class="lg-text-input"
+        id="input-text"
+      />
+    </div>
 
-  <button class="button" (click)="addXItems(1, newItem.value)">Add 1</button>
-  <button class="button" (click)="addXItems(1000, newItem.value)">
-    Add 1K
-  </button>
-  <button class="button" (click)="addXItems(5000, newItem.value)">
-    Add 5K
-  </button>
-  <button class="button" (click)="addXItems(10000, newItem.value)">
-    Add 10K
-  </button>
-  <button class="button" (click)="addXItems(50000, newItem.value)">
-    Add 50K
-  </button>
-  <button class="button" (click)="addXItems(100000, newItem.value)">
-    Add 100K
-  </button>
+    <button class="add-todo-button" (click)="addXItems(1, newItem.value)">
+      Add 1
+    </button>
+    <button class="add-todo-button" (click)="addXItems(1000, newItem.value)">
+      Add 1K
+    </button>
+    <button class="add-todo-button" (click)="addXItems(5000, newItem.value)">
+      Add 5K
+    </button>
+    <button class="add-todo-button" (click)="addXItems(10000, newItem.value)">
+      Add 10K
+    </button>
+    <button class="add-todo-button" (click)="addXItems(50000, newItem.value)">
+      Add 50K
+    </button>
+    <button class="add-todo-button" (click)="addXItems(100000, newItem.value)">
+      Add 100K
+    </button>
+  </div>
 
   <ul class="todos">
     <li class="todo" *ngFor="let todo of todos">
@@ -47,7 +67,7 @@
       <span class="text" [ngClass]="{ checked: todo.status }">
         {{ todo.description }}
       </span>
-      <button class="button" (click)="removeTodos(todo)">x</button>
+      <button (click)="removeTodos(todo)">x</button>
     </li>
   </ul>
 </div>

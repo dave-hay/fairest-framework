@@ -1,8 +1,9 @@
 <script>
+let logo = "logo.png"
   let newItem = '';
   let todoList = [];
-  let totalTime = '';
-  let totalItems = '';
+  let totalTime = '0';
+  let totalItems = '0';
 
   function removeFromList(index) {
     todoList.splice(index, 1);
@@ -25,27 +26,39 @@
     totalItems = todoList.length;
   }
 </script>
+
+<div id="container">
+<div class="header">
 <h1>Svelte Todo List</h1>
-<p>{totalTime}</p>
-<p>{totalItems}</p>
+<img class="logo" src={logo} alt="logo">
+<div class="results-container">
+<p>Total time: <span class="results">{totalTime}</span></p>
+<p>Total time: <span class="results">{totalItems}</span></p>
+</div>
+</div>
 
-<br />
+<div id="add">
+<div class="input-container">
+<input id="input-text" bind:value={newItem} type='text' placeholder='new todo item..'>
+</div>
+<div class="todo-buttons">
+<button class="add-todo-button" on:click={() => addXToList(1)}>Add</button>
+<button class="add-todo-button" on:click={() => addXToList(1000)}>Add1K</button>
+<button class="add-todo-button" on:click={() => addXToList(5000)}>Add5K</button>
+<button class="add-todo-button" on:click={() => addXToList(10000)}>Add10K</button>
+<button class="add-todo-button" on:click={() => addXToList(100000)}>Add100K</button>
+</div>
+</div>
 
-<input bind:value={newItem} type='text' placeholder='new todo item..'>
-<button on:click={() => addXToList(1)}>Add</button>
-<button on:click={() => addXToList(1000)}>Add1K</button>
-<button on:click={() => addXToList(5000)}>Add5K</button>
-<button on:click={() => addXToList(10000)}>Add10K</button>
-<button on:click={() => addXToList(100000)}>Add100K</button>
-
-<br />
+<ul class="todos">
 {#each todoList as item, index}
   <input bind:checked={item.status} type='checkbox'>
   <span class:checked={item.status}>{item.text}</span>
   <button on:click={() => removeFromList(index)}>X</button>
-  <br />
 {/each}
+</ul>
 
+</div>
 
 <style>
     .checked {

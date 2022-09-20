@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'todo';
-  totalTime = '0 ms';
+  totalTime = '0';
   totalItems = 0;
 
   allItems: { description: string; status: boolean }[] = [];
