@@ -34,7 +34,7 @@ export default {
 <template>
   <div id="container">
     <div class="header">
-      <h1>My Todos</h1>
+      <h1>Vue Todo List</h1>
       <img
         class="logo"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2367px-Vue.js_Logo_2.svg.png"
