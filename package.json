@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "workspaces": [
+    "angular-app",
+    "react-app",
+    "svelte-app",
+    "vue-app"
+  ],
+  "scripts": {
+    "start": "serve",
+    "build": "python3 build_site.py"
+  },
+  "devDependencies": {
+    "serve": "^14.0.1"
+  }
+}
